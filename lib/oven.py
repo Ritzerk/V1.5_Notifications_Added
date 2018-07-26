@@ -101,7 +101,7 @@ class Oven (threading.Thread):
         pid = 0
 				
         while True:
-			self.door = "CLOSED"
+	    self.door = "CLOSED"
 			
             if self.state == Oven.STATE_RUNNING:
 			
