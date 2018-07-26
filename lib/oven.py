@@ -25,7 +25,7 @@ try:
             raise Exception("gpio_air pin %s collides with SPI pins %s" % (config.gpio_air, spi_reserved_gpio))
         if config.gpio_heat in spi_reserved_gpio:
             raise Exception("gpio_heat pin %s collides with SPI pins %s" % (config.gpio_heat, spi_reserved_gpio))
-		if config.gpio_buzz in spi_reserved_gpio:
+	if config.gpio_buzz in spi_reserved_gpio:
             raise Exception("gpio_buzz pin %s collides with SPI pins %s" % (config.gpio_buzz, spi_reserved_gpio))
     if config.max6675:
         from max6675 import MAX6675, MAX6675Error
@@ -41,7 +41,7 @@ try:
     GPIO.setwarnings(False)
     GPIO.setup(config.gpio_heat, GPIO.OUT)	#Controls heating element
     GPIO.setup(config.gpio_air, GPIO.OUT)	#Controls air element
-	GPIO.setup(config.gpio_buzz, GPIO.OUT)	#Controls buzzer element
+    GPIO.setup(config.gpio_buzz, GPIO.OUT)	#Controls buzzer element
 	
     gpio_available = True
 except ImportError:
