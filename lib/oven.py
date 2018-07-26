@@ -95,7 +95,7 @@ class Oven (threading.Thread):
     def abort_run(self):
         self.reset()
 
-    def run(self, profile):
+    def run(self):		#removed profile
         temperature_count = 0
         last_temp = 0
         pid = 0
@@ -119,14 +119,14 @@ class Oven (threading.Thread):
 				
 		#This is where we may ask user to open vent to cool, new function to pop window.
                 #self.set_cool(pid <= -1)	#Returns false or true, not required.
-		if self.runtime == profile.get_stage5time():
-		    self.set_buzz(True)
-		    time.sleep(0.5)
-		    self.set_buzz(False)
-		    time.sleep(0.5)
-		    self.set_buzz(True)
-		    time.sleep(0.5)
-		    self.set_buzz(False)
+		#if self.runtime == profile.get_stage5time():	#buzzer off temporarily
+		#  self.set_buzz(True)
+		#   time.sleep(0.5)
+		#   self.set_buzz(False)
+		#   time.sleep(0.5)
+		#    self.set_buzz(True)
+		#    time.sleep(0.5)
+		#    self.set_buzz(False)
 				
                 if(pid > 0):
                     # The temp should be changing with the heat on
