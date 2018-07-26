@@ -178,13 +178,13 @@ class Oven (threading.Thread):
         else:
             self.heat = 0.0
             if gpio_available:
-               if config.heater_invert:HGH
+               if config.heater_invert:
                  GPIO.output(config.gpio_heat, GPIO.LOW)
                else:
                  GPIO.output(config.gpio_heat, GPIO.HIGH)
 
 				 
-   def set_buzz(self,value):
+    def set_buzz(self,value):
 	if value:
 	    self.buzz = 1.0
 	    if gpio_available:
