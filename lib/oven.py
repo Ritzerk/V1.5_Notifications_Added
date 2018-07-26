@@ -77,11 +77,11 @@ class Oven (threading.Thread):
         self.runtime = 0
         self.totaltime = 0
         self.target = 0
-		self.door = "CLOSED"
+	self.door = "CLOSED"
         self.state = Oven.STATE_IDLE
         self.set_heat(False)
         self.set_air(False)
-		self.set_buzz(False)
+	self.set_buzz(False)
         self.pid = PID(ki=config.pid_ki, kd=config.pid_kd, kp=config.pid_kp)
 
     def run_profile(self, profile):
@@ -103,9 +103,8 @@ class Oven (threading.Thread):
         while True:
 	    self.door = "CLOSED"
 			
-            if self.state == Oven.STATE_RUNNING:
-			
-				self.set_air(True)		#Keep fan always on when its running
+            if self.state == Oven.STATE_RUNNING:	
+	        self.set_air(True)		#Keep fan always on when its running
 				
                 if self.simulate:
                     self.runtime += 0.5
@@ -118,16 +117,16 @@ class Oven (threading.Thread):
 
                 log.info("pid: %.3f" % pid)
 				
-				#This is where we may ask user to open vent to cool, new function to pop window.
+		#This is where we may ask user to open vent to cool, new function to pop window.
                 #self.set_cool(pid <= -1)	#Returns false or true, not required.
-				if self.runtime == profile.get_stage5time()
-				    self.set_buzz(True)
-					time.sleep(0.5)
-					self.set_buzz(False)
-					time.sleep(0.5)
-					self.set_buzz(True)
-					time.sleep(0.5)
-					self.set_buzz(False)
+		if self.runtime == profile.get_stage5time()
+		    self.set_buzz(True)
+		    time.sleep(0.5)
+		    self.set_buzz(False)
+		    time.sleep(0.5)
+		    self.set_buzz(True)
+		    time.sleep(0.5)
+		    self.set_buzz(False)
 				
                 if(pid > 0):
                     # The temp should be changing with the heat on
@@ -152,11 +151,11 @@ class Oven (threading.Thread):
 				
 
                 if self.runtime >= self.totaltime:
-					self.set_buzz(True)
-					time.sleep(1)
-					self.set_buzz(False)
-					self.door = "OPEN"
-					time.sleep(1)
+		    self.set_buzz(True)
+		    time.sleep(1)
+		    self.set_buzz(False)
+		    self.door = "OPEN"
+		    time.sleep(1)
                     self.reset()
             
             if pid > 0:
@@ -185,15 +184,15 @@ class Oven (threading.Thread):
                  GPIO.output(config.gpio_heat, GPIO.HIGH)
 
 				 
-	def set_buzz(self,value):
-		if value:
-			self.buzz = 1.0
-			if gpio_available:
-				GPIO.output(config.gpio_buzz, GPIO.HIGH)
-		else:
-			self.buzz = 0.0
-			if gpio_available:
-				GPIO.output(config.gpio_buzz, GPIO.LOW)
+   def set_buzz(self,value):
+	if value:
+	    self.buzz = 1.0
+	    if gpio_available:
+		GPIO.output(config.gpio_buzz, GPIO.HIGH)
+	else:
+	    self.buzz = 0.0
+	    if gpio_available:
+		GPIO.output(config.gpio_buzz, GPIO.LOW)
 	
     def set_air(self, value):
         if value:
